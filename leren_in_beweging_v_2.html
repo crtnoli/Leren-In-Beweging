@@ -1,0 +1,193 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leren in Beweging</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Welkom, Sarah – Segment 3 van 10 🏇</h1>
+    <p class="slogan">“Je zit nu in segment 3 — bijna halverwege! Blijven gaan!”</p>
+  </header>
+
+  <main>
+    <section id="racebaan"></section>
+
+    <section class="paneel">
+      <h2>Volgend Leerdoel 🎯</h2>
+      <div id="volgend-doel"></div>
+      <button onclick="openLeerdoel()">Ga naar leerdoel</button>
+    </section>
+
+    <section class="paneel">
+      <h2>Jouw Statistieken 📊</h2>
+      <ul id="statistieken"></ul>
+    </section>
+
+    <section class="paneel">
+      <h2>Badges & Leesnups 🏅</h2>
+      <div id="badges"></div>
+    </section>
+
+    <section class="paneel">
+      <h2>TikTok Highlight 📺</h2>
+      <div id="tiktok"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f9f9f9;
+  color: #222;
+}
+header {
+  background: #004b91;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+.slogan {
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+main {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+#racebaan {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 6px;
+}
+.segment {
+  flex: 1;
+  height: 60px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  position: relative;
+}
+.segment.completed {
+  background-color: #9be7a0;
+}
+.segment.inprogress {
+  background-color: #fff59d;
+}
+.horse {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 0.3rem;
+  font-size: 1.2rem;
+}
+.paneel {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.paneel h2 {
+  margin-top: 0;
+  color: #004b91;
+}
+button {
+  background-color: #004b91;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+button:hover {
+  background-color: #003366;
+}
+
+// script.js
+const leerling = {
+  naam: "Sarah",
+  segment: 3,
+  behaaldeDoelen: 6,
+  doelenDezeMaand: 2,
+  klasseGemiddelde: 5,
+  uploads: 6,
+  badges: ["Brons", "Starter"],
+  leesnups: 4,
+  tiktok: {
+    titel: "Stripkabel uitleg",
+    views: 340,
+    positie: 2
+  },
+  volgendDoel: {
+    titel: "Kan 5 soorten tangen benoemen",
+    segment: 4,
+    tijd: "2 dagen"
+  }
+};
+
+function laadRacebaan() {
+  const racebaan = document.getElementById("racebaan");
+  for (let i = 1; i <= 10; i++) {
+    const segment = document.createElement("div");
+    segment.classList.add("segment");
+
+    if (i < leerling.segment) segment.classList.add("completed");
+    else if (i === leerling.segment) segment.classList.add("inprogress");
+
+    if (i === leerling.segment) {
+      const paard = document.createElement("span");
+      paard.classList.add("horse");
+      paard.textContent = "🐎 " + leerling.naam;
+      segment.appendChild(paard);
+    }
+
+    racebaan.appendChild(segment);
+  }
+}
+
+function toonVolgendDoel() {
+  const doel = leerling.volgendDoel;
+  const div = document.getElementById("volgend-doel");
+  div.innerHTML = `<strong>${doel.titel}</strong> – nog ${doel.tijd}`;
+}
+
+function toonStatistieken() {
+  const lijst = document.getElementById("statistieken");
+  lijst.innerHTML = `
+    <li>Behaalde doelen: ${leerling.behaaldeDoelen}</li>
+    <li>Doelen deze maand: ${leerling.doelenDezeMaand}</li>
+    <li>Klassegemiddelde: ${leerling.klasseGemiddelde}</li>
+    <li>Uploads: ${leerling.uploads}</li>
+  `;
+}
+
+function toonBadges() {
+  const div = document.getElementById("badges");
+  div.innerHTML = `🎖️ ${leerling.badges.join(", ")} behaald. Leesnups: ${leerling.leesnups}`;
+}
+
+function toonTikTok() {
+  const div = document.getElementById("tiktok");
+  const tik = leerling.tiktok;
+  div.innerHTML = `🎬 "${tik.titel}" staat <strong>${tik.positie}e</strong> met ${tik.views} views!`;
+}
+
+function openLeerdoel() {
+  alert("Naar leerdoelpagina (simulatie)");
+}
+
+laadRacebaan();
+toonVolgendDoel();
+toonStatistieken();
+toonBadges();
+toonTikTok();
