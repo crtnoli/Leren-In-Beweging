@@ -1,0 +1,81 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f9f9f9;
+  color: #222;
+}
+
+header {
+  background: #004b91;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.slogan {
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+main {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+#racebaan {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 6px;
+}
+
+.segment {
+  flex: 1;
+  height: 60px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  position: relative;
+}
+
+.segment.completed {
+  background-color: #9be7a0;
+}
+
+.segment.inprogress {
+  background-color: #fff59d;
+}
+
+.horse {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 0.3rem;
+  font-size: 1.2rem;
+}
+
+.paneel {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.paneel h2 {
+  margin-top: 0;
+  color: #004b91;
+}
+
+button {
+  background-color: #004b91;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button:hover {
+  background-color: #003366;
+}
